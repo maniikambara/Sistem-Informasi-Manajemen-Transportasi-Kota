@@ -43,9 +43,9 @@ void dataKendaraanBaru() {
         // Cari nama kendaraan dan kapasitas berdasarkan ID
         for (int j = 0; j < jumlahKendaraan; j++) {
             if (kendaraan[j].id == id) {
-                printf("\t\t\t        \xb3                 ID Kendaraan: %d                   \xb3\n", id);
-                printf("\t\t\t        \xb3                 Nama Kendaraan: %s                 \xb3\n",kendaraan[j].nama);
-                printf("\t\t\t        \xb3                 Kapasitas: %d                      \xb3\n",kendaraan[j].kapasitas);
+                printf("\t\t\t        \xb3                 ID Kendaraan: %d\n", id);
+                printf("\t\t\t        \xb3                 Nama Kendaraan: %s\n",kendaraan[j].nama);
+                printf("\t\t\t        \xb3                 Kapasitas: %d\n",kendaraan[j].kapasitas);
                 break;
             }
         }

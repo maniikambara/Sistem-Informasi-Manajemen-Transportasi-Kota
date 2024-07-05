@@ -6,7 +6,27 @@
 #include "utils.h"
 
 Rute rute[MAX];
-int jumlahRute = 0;
+int jumlahRute = 0; // Define here
+
+void hapusRute(int id) {
+    for (int i = 0; i < jumlahRute; i++) {
+        if (rute[i].id == id) {
+            // Hapus semua pemberhentian dalam rute
+            Node *temp = rute[i].head;
+            while (temp != NULL) {
+                Node *next = temp->next;
+                free(temp);
+                temp = next;
+            }
+            // Hapus rute dari array
+            for (int j = i; j < jumlahRute - 1; j++) {
+                rute[j] = rute[j + 1];
+            }
+            jumlahRute--;
+            return;
+        }
+    }
+}
 
 void tambahRute() {
     Rute r;
@@ -23,6 +43,10 @@ void tambahRute() {
     printf("\t\t\t        \xb3              Masukkan Nama Rute: ");
     scanf("%s", r.nama);
     r.head = NULL;
+
+    // Cek apakah ID sudah ada
+    hapusRute(r.id);
+
     printf("\t\t\t        \xb3\n");
     printf("\t\t\t        \xb3              Masukkan Jumlah Pemberhentian: ");
     int jumlah;
@@ -59,4 +83,28 @@ void tampilRute() {
     printf("\t\t\t        \xb3\n");
     printf("\t\t\t        \xc0\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xc4\xd9\n");
     MarqueeText("\t\t\t\t\xb3\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xb3\n",3999900);
+}
+
+int cekRute(int id) {
+    for (int i = 0; i < jumlahRute; i++) {
+        if (rute[i].id == id) {
+            return 1; // Rute ditemukan
+        }
+    }
+    return 0; // Rute tidak ditemukan
+}
+
+int cekPemberhentian(int id, const char *pemberhentian) {
+    for (int i = 0; i < jumlahRute; i++) {
+        if (rute[i].id == id) {
+            Node* temp = rute[i].head;
+            while (temp != NULL) {
+                if (strcmp(temp->pemberhentian, pemberhentian) == 0) {
+                    return 1; // Pemberhentian ditemukan
+                }
+                temp = temp->next;
+            }
+        }
+    }
+    return 0; // Pemberhentian tidak ditemukan
 }

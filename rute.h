@@ -14,7 +14,13 @@ typedef struct {
     Node* head;
 } Rute;
 
+extern Rute rute[MAX]; // Declare as extern
+extern int jumlahRute; // Declare as extern
+
 void tambahRute();
 void tampilRute();
+void hapusRute(int id);
+int cekRute(int id);
+int cekPemberhentian(int id, const char *pemberhentian);
 
 #endif

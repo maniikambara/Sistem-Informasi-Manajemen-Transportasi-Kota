@@ -7,6 +7,10 @@ typedef struct {
     int id;
     char nama[50];
     int kapasitas;
+    int terisi; // Kapasitas yang sudah terisi
+    int kosong; // Kapasitas yang kosong
+    int rute_id; // Tambahkan ID Rute
+    char pemberhentian[50]; // Tambahkan Nama Pemberhentian
 } Kendaraan;
 
 extern Kendaraan kendaraan[MAX];

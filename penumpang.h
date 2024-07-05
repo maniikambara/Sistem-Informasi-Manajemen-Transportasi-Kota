@@ -15,5 +15,6 @@ extern int jumlahPenumpang;       // Deklarasi variabel global
 
 void tambahPenumpang();
 void tampilPenumpang();
+void hapusPenumpang(int id); // Tambahkan deklarasi fungsi hapusPenumpang
 
 #endif

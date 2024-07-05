@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include <windows.h> // Include windows.h for Sleep function
 #include "kendaraan.h"
 #include "rute.h"
 #include "penumpang.h"
@@ -15,7 +15,7 @@ void loadingAnimation() {
     for (int i = 0; i < 10; i++) {
         printf("\rLoading... %c", loading[i % 4]);
         fflush(stdout);
-        usleep(100000); // Sleep for 100 milliseconds
+        Sleep(100); // Sleep for 100 milliseconds
     }
     printf("\rLoading... Done!\n");
 }
@@ -33,7 +33,7 @@ void tampilMenuUtama() {
     printf("\t\t\t        \xb3                                                   \xb3\n");
     printf("\t\t\t        \xb3             3. Tambah Data Rute                   \xb3\n");
     printf("\t\t\t        \xb3                                                   \xb3\n");
-    printf("\t\t\t        \xb3             4. Tampilakn Data Rute                \xb3\n");
+    printf("\t\t\t        \xb3             4. Tampilkan Data Rute                \xb3\n");
     printf("\t\t\t        \xb3                                                   \xb3\n");
     printf("\t\t\t        \xb3             5. Tambah Data Penumpang              \xb3\n");
     printf("\t\t\t        \xb3                                                   \xb3\n");
@@ -46,6 +46,8 @@ void tampilMenuUtama() {
     printf("\t\t\t        \xb3             9. Tampilkan Antrian Penumpang        \xb3\n");
     printf("\t\t\t        \xb3                                                   \xb3\n");
     printf("\t\t\t        \xb3             10. Tampilkan Kendaraan Baru Masuk    \xb3\n");
+    printf("\t\t\t        \xb3                                                   \xb3\n");
+    printf("\t\t\t        \xb3             11. Hapus Penumpang                   \xb3\n"); // Tambahkan menu hapus penumpang
     printf("\t\t\t        \xb3                                                   \xb3\n");
     printf("\t\t\t        \xb3             0. Keluar                             \xb3\n");
     printf("\t\t\t        \xb3                                                   \xb3\n");
@@ -106,6 +108,14 @@ int main() {
             case 10:
             loadingAnimation();
                 dataKendaraanBaru();
+                break;
+            case 11:
+            loadingAnimation();
+                int id;
+                printf("Masukkan ID Penumpang yang akan dihapus: ");
+                scanf("%d", &id);
+                hapusPenumpang(id);
+                printf("Penumpang dengan ID %d berhasil dihapus.\n", id);
                 break;
             case 0:
             loadingAnimation();
